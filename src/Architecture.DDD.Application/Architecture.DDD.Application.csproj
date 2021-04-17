@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Architecture.DDD</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Architecture.DDD.Domain\Architecture.DDD.Domain.csproj" />
+    <ProjectReference Include="..\Architecture.DDD.Application.Contracts\Architecture.DDD.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="4.2.2" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.2.2" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.2.2" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="4.2.2" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="4.2.2" />
+  </ItemGroup>
+
+</Project>
