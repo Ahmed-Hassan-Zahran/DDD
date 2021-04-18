@@ -25,6 +25,11 @@ namespace Architecture.DDD.Infra
             await _deviceRepository.DeleteAsync(Id);
         }
 
+        //public async Task DeleteByCodeAsync(int codeId)
+        //{
+        //    await _deviceRepository.DeleteAsync();
+        //}
+
         public async Task<ListResultDto<DeviceDto>> GetListAsync()
         {
             var devices = await _deviceRepository.GetListAsync();

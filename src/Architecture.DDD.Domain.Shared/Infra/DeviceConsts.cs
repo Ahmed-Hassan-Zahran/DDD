@@ -6,10 +6,10 @@ namespace Architecture.DDD.Infra
 {
     public static class DeviceConsts
     {
-        public const int MaxCodeLength = 32;
+        public const int MaxCodeLength = 8;
 
-        public const int MaxNameLength = 2;
+        public const int MaxNameLength = 8;
 
-        public const int MaxImageNameLength = 2;
+        public const int MaxImageNameLength = 8;
     }
 }

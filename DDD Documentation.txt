@@ -1,0 +1,10 @@
+1- Shift all business validation to the Aggregate/Entity as much as you can.
+1- Between Presentation and Application Layer (DTOs)
+2- Object mapping applied from entity to outputDTO to be returned to the presentation.
+- Do not use object mapping to create the entity as it will ignore the business validation.
+2- Between Application Layer and Domain (Entities)
+3- Business Rules in Entities.
+If business rule outside the entity move it to the domain service
+4- If business rules related to more than one entity then put it in Domain Service.
+5- For aggregates, Business rules should be maintained in aggregate roots.
+6- Custom repositories should be implemented in the Entity framework project while its interface will be in the domain

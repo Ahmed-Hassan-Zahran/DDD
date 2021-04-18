@@ -26,8 +26,10 @@ namespace Architecture.DDD.Infra
 
         public int UsedStockCount { get; private set; }
 
-        //[StringLength(DeviceConsts.MaxImageNameLength)]
+        [StringLength(DeviceConsts.MaxImageNameLength)]
         public string ImageName { get; private set; }
+
+        public DeviceType Type { get; set; }
 
         private Device()
         {
@@ -41,7 +43,8 @@ namespace Architecture.DDD.Infra
             float currentPrice = 0.0f,
             int stockCount = 0,
             int usedStockCount = 0,
-            string imageName = null)
+            string imageName = null,
+            DeviceType type = DeviceType.Undefined)
         {
             Check.NotNullOrWhiteSpace(code, nameof(code));
 
@@ -57,6 +60,7 @@ namespace Architecture.DDD.Infra
             SetImageName(imageName);
             SetStockCountInternal(stockCount, triggerEvent: false);
             SetUsedStockCountInternal(usedStockCount, triggerEvent: false);
+            Type = type;
         }
 
         public Device SetName([NotNull] string name)

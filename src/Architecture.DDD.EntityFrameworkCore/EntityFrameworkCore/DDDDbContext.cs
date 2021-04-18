@@ -21,7 +21,7 @@ namespace Architecture.DDD.EntityFrameworkCore
     [ConnectionStringName("Default")]
     public class DDDDbContext : AbpDbContext<DDDDbContext>
     {
-        public DbSet<AppUser> Users { get; set; }
+        // public DbSet<AppUser> Users { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside DDDDbContextModelCreatingExtensions.ConfigureDDD
@@ -41,17 +41,17 @@ namespace Architecture.DDD.EntityFrameworkCore
 
             /* Configure the shared tables (with included modules) here */
 
-            builder.Entity<AppUser>(b =>
-            {
-                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
+            //builder.Entity<AppUser>(b =>
+            //{
+            //    b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
                 
-                b.ConfigureByConvention();
-                b.ConfigureAbpUser();
+            //    b.ConfigureByConvention();
+            //    b.ConfigureAbpUser();
 
-                /* Configure mappings for your additional properties
-                 * Also see the DDDEfCoreEntityExtensionMappings class
-                 */
-            });
+            //    /* Configure mappings for your additional properties
+            //     * Also see the DDDEfCoreEntityExtensionMappings class
+            //     */
+            //});
 
             /* Configure your own tables/entities inside the ConfigureDDD method */
 
