@@ -12,17 +12,24 @@ namespace Architecture.DDD.Infra
     public class DeviceAppService : ApplicationService, IDeviceAppService
     {
         private readonly IRepository<Device, Guid> _deviceRepository;
+        private readonly IDeviceRepository _deviceCustomRepository;
 
         private readonly DeviceManager _deviceManager;
-        public DeviceAppService(IRepository<Device, Guid> deviceRepository, DeviceManager deviceManager)
+        public DeviceAppService(IRepository<Device, Guid> deviceRepository, DeviceManager deviceManager, IDeviceRepository deviceCustomRepository)
         {
             _deviceRepository = deviceRepository;
             _deviceManager = deviceManager;
+            _deviceCustomRepository = deviceCustomRepository;
         }
 
         public async Task DeleteAsync(Guid Id)
         {
             await _deviceRepository.DeleteAsync(Id);
+        }
+
+        public async Task DeleteByTypeAsync(DeviceType type)
+        {
+            await _deviceCustomRepository.DeleteDeviceByType(type);
         }
 
         //public async Task DeleteByCodeAsync(int codeId)
@@ -45,7 +52,7 @@ namespace Architecture.DDD.Infra
 
         public async Task<DeviceDto> CreateAsync(CreateDeviceDto input)
         {
-            var device = await _deviceManager.CreateAsync(input.Code, input.Name, input.CurrentPrice, input.StockCount, input.UsedStockCount, input.ImageName);
+            var device = await _deviceManager.CreateAsync(input.Code, input.Name, input.CurrentPrice, input.StockCount, input.UsedStockCount, input.ImageName, input.Type);
             return ObjectMapper.Map<Device, DeviceDto>(device);
         }
 

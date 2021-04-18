@@ -21,5 +21,7 @@ namespace Architecture.DDD.Infra
 
         [StringLength(DeviceConsts.MaxImageNameLength)]
         public string ImageName { get; set; }
+
+        public DeviceType Type { get; set; }
     }
 }

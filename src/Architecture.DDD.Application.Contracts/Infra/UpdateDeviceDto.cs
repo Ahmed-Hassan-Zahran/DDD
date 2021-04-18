@@ -7,6 +7,7 @@ namespace Architecture.DDD.Infra
 {
     public class UpdateDeviceDto
     {
+        [Required]
         public Guid Id { get; set; }
         public string Code { get; set; }
 
@@ -22,5 +23,7 @@ namespace Architecture.DDD.Infra
 
         [StringLength(DeviceConsts.MaxImageNameLength)]
         public string ImageName { get; set; }
+
+        public DeviceType Type { get; set; }
     }
 }

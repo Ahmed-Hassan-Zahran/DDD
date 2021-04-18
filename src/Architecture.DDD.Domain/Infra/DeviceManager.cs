@@ -17,7 +17,7 @@ namespace Architecture.DDD.Infra
             _deviceRepository = deviceRepository;
         }
 
-        public async Task<Device> CreateAsync([NotNull] string code, [NotNull] string name, float currentPrice, int stockCount, int usedStockCount, string imageName)
+        public async Task<Device> CreateAsync([NotNull] string code, [NotNull] string name, float currentPrice, int stockCount, int usedStockCount, string imageName, DeviceType type)
         {
             var existingrDevice = await _deviceRepository.FirstOrDefaultAsync(p => p.Code == code);
             if (existingrDevice != null)
@@ -25,7 +25,7 @@ namespace Architecture.DDD.Infra
                 throw new DeviceCodeAlreadyExistsException(code);
             }
 
-            return await _deviceRepository.InsertAsync(new Device(GuidGenerator.Create(), code, name, currentPrice, stockCount, usedStockCount,imageName));
+            return await _deviceRepository.InsertAsync(new Device(GuidGenerator.Create(), code, name, currentPrice, stockCount, usedStockCount, imageName, type));
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Architecture.DDD.Infra
         {
             var dbContext = await GetDbContextAsync();
             await dbContext.Database.ExecuteSqlRawAsync(
-                $"DELETE FROM Books WHERE Type = {(int)type}"
+                $"DELETE FROM Devices WHERE Type = {(int)type}"
             );
         }
     }
