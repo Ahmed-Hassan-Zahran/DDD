@@ -1,10 +1,37 @@
-1- Shift all business validation to the Aggregate/Entity as much as you can.
+Create Solution Steps
+=====================
+1- From ABP.IO create a new project with Architecture.DDD as project name, Application in project type, Angular UI Framework, EF Core Database provider, SQL Server as DB management system,
+None in mobile and check the checkbox for Separate Identity Server.
+2- Delete the separate Identity Server project.
+3- In HttpApi.Host project open its module file and Comment configuring Authentication, Caching and Redis.
+4- In HttpApi.Host project open its module file and Comment app.UseAbpRequestLocalization, using authentication and Authorization.
+5- Search for AbpBackgroundJobs and comment all its module dependencies.
+5- In HttpApi.Host project open its appsettings.json file and modify the connection string.
+6- Select .HttpApi.Host as running default startup project.
+7- Open Package Manager Console select .EntityFrameworkCore as Default project.
+8- Type Add-Migration initial
+9- Type Update-Database
+10- Run Application.
+
+Domain Driven Design Concepts
+=============================
+1- Shift all business Rules/ Validation to the Aggregate/Entity as much as you can.
+2- If business rule outside the entity move it to the domain service
+3- If business rules related to more than one entity then put it in Domain Service.
+4- For aggregates, Business rules should be maintained in aggregate roots.
+5- Leave usecase related business in the application service.
+
+Data Communications
+===================
 1- Between Presentation and Application Layer (DTOs)
-2- Object mapping applied from entity to outputDTO to be returned to the presentation.
-- Do not use object mapping to create the entity as it will ignore the business validation.
 2- Between Application Layer and Domain (Entities)
-3- Business Rules in Entities.
-If business rule outside the entity move it to the domain service
-4- If business rules related to more than one entity then put it in Domain Service.
-5- For aggregates, Business rules should be maintained in aggregate roots.
-6- Custom repositories should be implemented in the Entity framework project while its interface will be in the domain
+
+Object Mappings in Application Service:
+=======================================
+1- Object mapping applied from entity to outputDTO to be returned to the presentation.
+2- Do not use object mapping to create the entity as it will ignore the business validation. (Specially if you have business rules for this entity)
+
+Repository Design Pattern Usage
+===============================
+1- Use the generic repositories as much as you can.
+2- In case generic repositories did not satisfy requirements, use custom repositories and it should be implemented in the Entity framework project while its interface will be in the domain.

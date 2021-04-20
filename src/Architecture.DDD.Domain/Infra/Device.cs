@@ -26,7 +26,6 @@ namespace Architecture.DDD.Infra
 
         public int UsedStockCount { get; private set; }
 
-        [StringLength(DeviceConsts.MaxImageNameLength)]
         public string ImageName { get; private set; }
 
         public DeviceType Type { get; set; }
