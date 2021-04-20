@@ -28,6 +28,7 @@ namespace Architecture.DDD.EntityFrameworkCore
          */
 
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Request> Requests { get; set; }
 
         public DDDDbContext(DbContextOptions<DDDDbContext> options)
             : base(options)

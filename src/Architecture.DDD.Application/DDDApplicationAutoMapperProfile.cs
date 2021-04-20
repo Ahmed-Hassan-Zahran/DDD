@@ -11,6 +11,8 @@ namespace Architecture.DDD
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
             CreateMap<Device, DeviceDto>();
+            CreateMap<Request, RequestDto>();
+            CreateMap<Action, ActionDto>();
         }
     }
 }

@@ -21,21 +21,24 @@ namespace Architecture.DDD.Infra
         /// <summary>
         /// -1 not set yet
         /// </summary>
-        public virtual int TotalActions { get; protected set; }
-        public virtual int TotalActionsFinished { get; protected set; }
+        public virtual int TotalActionsCount { get; protected set; }
+        //public virtual int TotalActionsFinished { get; protected set; }
+
+        public virtual List<Action> Actions { get; protected set; }
 
         public Request()
         {
 
         }
 
-        public Request(string description, Department department, DateTime expectedDateTime, int totalActions, int totalActionsFinished)
+        public Request(string description, Department department, DateTime expectedDateTime, int totalActions/*, int totalActionsFinished*/)
         {
             Description = description;
             Department = department;
             SetExpectedDateTime(expectedDateTime);
-            SetTotalActions(totalActions);
-            SetTotalActionsFinished(totalActionsFinished);
+            SetTotalActionsCount(totalActions);
+            //SetTotalActionsFinished(totalActionsFinished);
+            Actions = new List<Action>();
         }
 
         public Request SetExpectedDateTime(DateTime expectedDateTime)
@@ -49,24 +52,33 @@ namespace Architecture.DDD.Infra
             return this;
         }
 
-        public Request SetTotalActions(int totalActions)
+        public Request SetTotalActionsCount(int totalActions)
         {
             if(totalActions < -1)
             {
                 throw new ArgumentException($"Request total actions should be greater than -1");
             }
-            TotalActions = totalActions;
+            TotalActionsCount = totalActions;
             return this;
         }
 
-        public Request SetTotalActionsFinished(int totalActionsFinished)
+        //public Request SetTotalActionsFinished(int totalActionsFinished)
+        //{
+        //    if (TotalActionsFinished < 0 || totalActionsFinished > TotalActions)
+        //    {
+        //        throw new ArgumentException($"Request total actions finished should be zero or less than or equal {TotalActions}");
+        //    }
+        //    TotalActionsFinished = totalActionsFinished;
+        //    return this;
+        //}
+
+        public void AddAction(String desc)
         {
-            if (TotalActionsFinished < 0 || totalActionsFinished > TotalActions)
+            if(Actions.Count >= TotalActionsCount)
             {
-                throw new ArgumentException($"Request total actions finished should be zero or less than or equal {TotalActions}");
+                throw new TotalActionsCountExceededTheLimitException(TotalActionsCount);
             }
-            TotalActionsFinished = totalActionsFinished;
-            return this;
+            Actions.Add(new Action(desc));
         }
     }
 }
