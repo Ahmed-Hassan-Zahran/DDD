@@ -16,10 +16,11 @@ None in mobile and check the checkbox for Separate Identity Server.
 Domain Driven Design Concepts
 =============================
 1- Shift all business Rules/ Validation to the Aggregate/Entity as much as you can.
-2- If business rule outside the entity move it to the domain service
+2- If business rule outside the entity, Create it in a domain service (If not exist create it).
 3- If business rules related to more than one entity then put it in Domain Service.
 4- For aggregates, Business rules should be maintained in aggregate roots.
 5- Leave usecase related business in the application service.
+6- You might need to create different application services in case of different frontend channels with different requirements.
 
 Data Communications
 ===================
