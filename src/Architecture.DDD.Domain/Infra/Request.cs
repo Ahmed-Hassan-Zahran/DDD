@@ -80,5 +80,16 @@ namespace Architecture.DDD.Infra
             }
             Actions.Add(new Action(desc));
         }
+
+        public void AddAction(String desc, ActionStatus actionStatus)
+        {
+            if (Actions.Count >= TotalActionsCount)
+            {
+                throw new TotalActionsCountExceededTheLimitException(TotalActionsCount);
+            }
+            var newAction = new Action(desc);
+            newAction.ChangeStatus(actionStatus);
+            Actions.Add(newAction);
+        }
     }
 }

@@ -27,5 +27,7 @@ namespace Architecture.DDD.Infra
             var requestCreated = await _requestRepository.InsertAsync(request);
             return ObjectMapper.Map<Request, RequestDto>(requestCreated);
         }
+
+
     }
 }

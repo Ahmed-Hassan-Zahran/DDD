@@ -40,5 +40,11 @@ namespace Architecture.DDD.Infra
             return this;
         }
 
+        internal Action ChangeStatus(ActionStatus status)
+        {
+            Status = status;
+            return this;
+        }
+
     }
 }
