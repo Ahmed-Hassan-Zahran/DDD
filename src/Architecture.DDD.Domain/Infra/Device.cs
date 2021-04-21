@@ -119,16 +119,7 @@ namespace Architecture.DDD.Infra
                 return this;
             }
 
-            if (triggerEvent)
-            {
-                AddDistributedEvent(
-                    new DeviceStockCountChangedEto(
-                        Id,
-                        StockCount,
-                        stockCount
-                    )
-                );
-            }
+            // Next
 
             StockCount = stockCount;
             return this;
@@ -151,16 +142,7 @@ namespace Architecture.DDD.Infra
                 return this;
             }
 
-            //if (triggerEvent)
-            //{
-            //    AddDistributedEvent(
-            //        new DeviceStockCountChangedEto(
-            //            Id,
-            //            StockCount,
-            //            stockCount
-            //        )
-            //    );
-            //}
+            // Next 1
 
             UsedStockCount = usedStockCount;
             return this;

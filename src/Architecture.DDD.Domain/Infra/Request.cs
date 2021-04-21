@@ -91,5 +91,11 @@ namespace Architecture.DDD.Infra
             newAction.ChangeStatus(actionStatus);
             Actions.Add(newAction);
         }
+
+        public void ChangeActionStatus(Guid actionId, ActionStatus status)
+        {
+            var action = Actions.Find(a => a.Id == actionId);
+            action.ChangeStatus(status);
+        }
     }
 }
