@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Architecture.DDD.Infra;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 
 namespace Architecture.DDD.EntityFrameworkCore
@@ -17,6 +18,11 @@ namespace Architecture.DDD.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
+            builder.Entity<Action>().OwnsOne(a=>a.Location, m=>
+            {
+                m.Property(p => p.Floor).HasMaxLength(10).HasDefaultValue("").HasColumnName("Location_Floor");
+                m.Property(p => p.Premises).HasMaxLength(10).HasDefaultValue("").HasColumnName("Location_Primeses");
+            });
         }
     }
 }

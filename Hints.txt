@@ -1,1 +1,9 @@
+Device
+========
+Explain Access modifiers
+
 internal Keyword in Actions
+
+
+
+https://www.edgesidesolutions.com/ddd-value-objects-with-entity-framework-core/

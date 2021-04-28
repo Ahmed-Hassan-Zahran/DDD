@@ -6,26 +6,42 @@ using Volo.Abp.Domain.Entities.Auditing;
 
 namespace Architecture.DDD.Infra
 {
-    public class Device : AuditedAggregateRoot<Guid>
+    //public class Device : AuditedAggregateRoot<Guid>
+    public class Device : AuditedEntity<Guid>
     {
         /// <summary>
         /// A unique value for this Device.
         /// DeviceManager ensures the uniqueness of it.
         /// It can not be changed after creation of the Device.
+        /// Length Should be < DeviceConsts.MaxCodeLength
         /// </summary>
         [NotNull]
         public string Code { get; private set; }
 
+        /// <summary>
+        /// Maximum length is DeviceConsts.MaxNameLength
+        /// </summary>
         [NotNull]
-        //[StringLength(DeviceConsts.MaxNameLength)]
         public string Name { get; private set; }
 
+        /// <summary>
+        /// Must be > 0
+        /// </summary>
         public float CurrentPrice { get; private set; }
 
+        /// <summary>
+        /// Must be > 0
+        /// </summary>
         public int StockCount { get; private set; }
 
+        /// <summary>
+        /// Must be <= StockCount
+        /// </summary>
         public int UsedStockCount { get; private set; }
 
+        /// <summary>
+        /// Length must be < DeviceConsts.MaxImageNameLength
+        /// </summary>
         public string ImageName { get; private set; }
 
         public DeviceType Type { get; set; }
@@ -47,7 +63,7 @@ namespace Architecture.DDD.Infra
         {
             Check.NotNullOrWhiteSpace(code, nameof(code));
 
-            if (code.Length >= DeviceConsts.MaxCodeLength)
+            if (code.Length > DeviceConsts.MaxCodeLength)
             {
                 throw new ArgumentException($"Device code can not be longer than {DeviceConsts.MaxCodeLength}");
             }
@@ -66,7 +82,7 @@ namespace Architecture.DDD.Infra
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
 
-            if (name.Length >= DeviceConsts.MaxNameLength)
+            if (name.Length > DeviceConsts.MaxNameLength)
             {
                 throw new ArgumentException($"Device name can not be longer than {DeviceConsts.MaxNameLength}");
             }
@@ -82,7 +98,7 @@ namespace Architecture.DDD.Infra
                 return this;
             }
 
-            if (imageName.Length >= DeviceConsts.MaxImageNameLength)
+            if (imageName.Length > DeviceConsts.MaxImageNameLength)
             {
                 throw new ArgumentException($"Device image name can not be longer than {DeviceConsts.MaxImageNameLength}");
             }

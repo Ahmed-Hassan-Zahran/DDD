@@ -1,4 +1,8 @@
 ﻿using Architecture.DDD.Eto;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Emailing;
@@ -6,11 +10,11 @@ using Volo.Abp.EventBus;
 
 namespace Architecture.DDD.Infra
 {
-    public class ActionFinishedHandler : ILocalEventHandler<ActionFinishedEto>,
+    public class ActionFinishedOneHandler : ILocalEventHandler<ActionFinishedEto>,
           ITransientDependency
     {
         private readonly IEmailSender _emailSender;
-        public ActionFinishedHandler(IEmailSender emailSender)
+        public ActionFinishedOneHandler(IEmailSender emailSender)
         {
             _emailSender = emailSender;
         }

@@ -9,6 +9,8 @@ namespace Architecture.DDD.Infra
 
         public ActionStatus Status { get; set; }
 
+        public Location Location { get; set; }
+
         /// <summary>
         /// Business Rule: At least 3 days in the future
         /// Business Rule: At most Request execution limit - 1
