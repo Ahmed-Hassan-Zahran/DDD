@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Architecture.DDD.Eto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -96,6 +97,10 @@ namespace Architecture.DDD.Infra
         {
             var action = Actions.Find(a => a.Id == actionId);
             action.ChangeStatus(status);
+            if(status == ActionStatus.Finished)
+            {
+                AddLocalEvent(new ActionFinishedEto { Description = action.Description});
+            }
         }
     }
 }

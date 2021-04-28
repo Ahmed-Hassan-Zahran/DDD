@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Architecture.DDD.Infra;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -19,6 +20,8 @@ namespace Architecture.DDD.EntityFrameworkCore
      */
     public class DDDMigrationsDbContext : AbpDbContext<DDDMigrationsDbContext>
     {
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Request> Requests { get; set; }
         public DDDMigrationsDbContext(DbContextOptions<DDDMigrationsDbContext> options) 
             : base(options)
         {
@@ -31,14 +34,14 @@ namespace Architecture.DDD.EntityFrameworkCore
 
             /* Include modules to your migration db context */
 
-            builder.ConfigurePermissionManagement();
+            //builder.ConfigurePermissionManagement();
             builder.ConfigureSettingManagement();
-            builder.ConfigureBackgroundJobs();
+            //builder.ConfigureBackgroundJobs();
             builder.ConfigureAuditLogging();
-            builder.ConfigureIdentity();
-            builder.ConfigureIdentityServer();
-            builder.ConfigureFeatureManagement();
-            builder.ConfigureTenantManagement();
+            //builder.ConfigureIdentity();
+            //builder.ConfigureIdentityServer();
+            //builder.ConfigureFeatureManagement();
+            //builder.ConfigureTenantManagement();
 
             /* Configure your own tables/entities inside the ConfigureDDD method */
 

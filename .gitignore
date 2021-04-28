@@ -258,4 +258,4 @@ src/Architecture.DDD.IdentityServer/Logs/*
 src/Architecture.DDD.HttpApi.Host/Logs/*
 src/Architecture.DDD.HttpApi.HostWithIds/Logs/*
 src/Architecture.DDD.DbMigrator/Logs/*
-src/Architecture.DDD.EntityFrameworkCore/Migrations
+src/Architecture.DDD.EntityFrameworkCore.DbMigrations/Migrations
