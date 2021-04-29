@@ -82,13 +82,13 @@ namespace Architecture.DDD.Infra
             Actions.Add(new Action(desc));
         }
 
-        public void AddAction(String desc, ActionStatus actionStatus)
+        public void AddAction(String desc, ActionStatus actionStatus, DateTime? expectedDateTime, string premises, string floor)
         {
             if (Actions.Count >= TotalActionsCount)
             {
                 throw new TotalActionsCountExceededTheLimitException(TotalActionsCount);
             }
-            var newAction = new Action(desc);
+            var newAction = new Action(desc, actionStatus, expectedDateTime, premises, floor);
             newAction.ChangeStatus(actionStatus);
             Actions.Add(newAction);
         }

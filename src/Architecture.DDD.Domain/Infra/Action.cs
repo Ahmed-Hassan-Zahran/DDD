@@ -13,7 +13,8 @@ namespace Architecture.DDD.Infra
 
         /// <summary>
         /// Business Rule: At least 3 days in the future
-        /// Business Rule: At most Request execution limit - 1
+        /// Business Rule: At most Request execution limit
+        /// If not set at creation time, Then it should be expected after 5 days by default
         /// </summary>
         public DateTime ExpectedDateTime { get; set; }
 
@@ -22,12 +23,17 @@ namespace Architecture.DDD.Infra
 
         }
 
-        internal Action(string description, ActionStatus actionStatus = ActionStatus.UnAssigned)
+        internal Action(string description, ActionStatus actionStatus = ActionStatus.UnAssigned, DateTime? expectedDateTime = null, string premises = "Main", string floor = "One")
         {
             Description = description;
             Status = actionStatus;
+            Location = new Location(premises, floor);
             // Business Rule: All created actions should have expected date after 5 days
-            ExpectedDateTime = DateTime.Now.AddDays(5);
+            if (expectedDateTime == null)
+            {
+                expectedDateTime = DateTime.Now.AddDays(5);
+            }
+            SetExpectedDateTime(expectedDateTime.Value);
         }
 
         internal Action SetExpectedDateTime(DateTime expectedDateTime)

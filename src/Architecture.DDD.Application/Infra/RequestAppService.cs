@@ -23,7 +23,7 @@ namespace Architecture.DDD.Infra
             var request = new Request(input.Description, input.Department, input.ExpectedDateTime, input.TotalActionsCount);
             foreach (var a in input.Actions)
             {
-                request.AddAction(a.Description);
+                request.AddAction(a.Description, a.Status, a.ExpectedDateTime, a.Premises, a.Floor);
             }
 
             var requestCreated = await _requestRepository.InsertAsync(request);
